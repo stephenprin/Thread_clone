@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import {dark} from '@clerk/themes'
 
 const TopBar = () => {
   return (
@@ -18,7 +19,7 @@ const TopBar = () => {
         <p className="text-heading3-bold text-light-1 max-xs:hidden">Thread</p>
       </Link>
       <div className="flex items-center gap-1">
-        <div className="block md:hidden">
+        <div className="block">
           <SignedIn>
             <div className="flex cursor-pointer gap-4">
               <UserButton />
@@ -33,10 +34,18 @@ const TopBar = () => {
               </SignOutButton>
             
             </div>
+            <OrganizationSwitcher
+              appearance={{
+                baseTheme: dark,
+                elements: {
+                  organizationSwitcherTrigger:"py-2 px-4"
+                }
+              }}
+            />
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="rounded border-none text-white   px-4 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+              <button className="rounded border-none text-white px-4 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                 Sign in
               </button>
             </SignInButton>
