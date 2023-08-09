@@ -15,7 +15,7 @@ import { UserValidation } from "@/lib/validations/user";
 import * as z from "zod"
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { Textarea } from "../ui/textarea";
 
 
@@ -35,6 +35,7 @@ interface Props {
 
 
 const AccountProfile = ({ user, btnTitle }: Props) => {
+  const [files, setFiles]=useState<File[]>([])
   const form = useForm({
     defaultValues: {
       profile_photo: user?.image || '',
@@ -51,8 +52,22 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     console.log(values)
   }
 
-  const handleImage = (e:ChangeEvent, fieldChange:(value:string)=>void) => {
+  const handleImage = (e:ChangeEvent<HTMLInputElement>, fieldChange:(value:string)=>void) => {
     e.preventDefault();
+    const fileReader = new FileReader()
+    
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setFiles(Array.from(e.target.files));
+
+      if (!file.type.includes('image')) return;
+
+      fileReader.onload = async (event) => {
+        const imgDataUrl = event.target?.result?.toString() || ''
+          fieldChange(imgDataUrl)
+      }
+      fileReader.readAsDataURL(file)
+    }
   }
 
   return (
