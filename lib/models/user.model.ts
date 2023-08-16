@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const userSchema =new mongoose.Schema({
     id: {
         type: String,
@@ -21,7 +22,7 @@ const userSchema =new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref:"Thread",
-        }
+        },
     ],
     onboarded: {
         type: Boolean,
