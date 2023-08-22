@@ -59,4 +59,15 @@ export async function fetchUser(userId: string) {
     
 }
 
+export async function fetchUserPost(userId: string) {
+    connectToDB();
+    try {
+        // find all thread authored by user with the user Id
+        
+    } catch (error:any) {
+        throw new Error(`Failed to fetch user post ${error.message}`)
+    }
+    
+}
+
 
