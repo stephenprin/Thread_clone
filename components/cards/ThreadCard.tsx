@@ -29,19 +29,19 @@ interface Props{
 
 }
 
-const ThreadCard = ({id,
+const ThreadCard = ({ id,
     currentUserId,
-     parentId,
+    parentId,
     content,
-     author,
+    author,
     community,
     createdAt,
     comments,
     isComment
 
 }: Props) => {
-  return (
-      <article className="flex flex-col w-full bg-dark-2 p-6">
+    return (
+        <article className={`flex flex-col w-full rounded-xl  ${isComment ?'px-0 xs:px-7':'bg-dark-2 p-6'}`}>
           <div className="flex items-start justify-between">
               <div className="flex w-full flex-1 flex-row gap-4">
                   <div className="flex flex-col items-center">

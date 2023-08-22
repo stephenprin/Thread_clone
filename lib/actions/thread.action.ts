@@ -125,6 +125,7 @@ export async function addCommentToThread(
             author: userId,
             parentId: threadId,
         })
+        
         const savedCommentThread = await commentThread.save();
 
         //update the origiinal thread to include the nnew comment
