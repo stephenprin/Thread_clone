@@ -12,7 +12,7 @@ async function Page() {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  const activity = await getActivity(userInfo._id);
+  const activities = await getActivity(userInfo._id);
  
 
   return (
@@ -20,9 +20,9 @@ async function Page() {
       <h1 className='head-text'>Activity</h1>
 
       <section className='mt-10 flex flex-col gap-5'>
-        {activity.length > 0 ? (
+        {activities.length > 0 ? (
           <>
-            {activity.map((activity) => (
+            {activities.map((activity) => (
               <Link key={activity._id} href={`/thread/${activity.parentId}`}>
                 <article className='activity-card'>
                   <Image
